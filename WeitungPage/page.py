@@ -123,7 +123,7 @@ class WeitungPage(Famcy.FamcyPage):
 
         ilist = Famcy.inputList()
         ilist.update({
-            "title": "Focus Area"
+            "title": "Filter by focus area: "
             })
 
         cat_list = []
