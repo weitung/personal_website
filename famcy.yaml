@@ -1,22 +1,17 @@
-console_title: "Famcy範例管理網站"
-console_description: "這是Famcy範例管理網站"
-main_page: overview
+console_title: "Weitung's Personal Page"
+console_description: "Weitung's Personal Page"
+main_page: /
 
 # Declare Main page part
-side_bar_title: "dashboard"
+side_bar_title: "Weitung's Personal Page"
 side_bar_hierachy:
   - Home: "/"
-
-user_defined_content_header_var: PAGE_HEADER
-user_defined_content_var: PAGE_CONTENT
-user_defined_content_object_var: PAGE_CONTENT_OBJECT
-user_default_page_define_file: page
 
 default_name: "Nexuni"
 default_profile_pic_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fchannel%2FUClOgrSn4afPVICckeKLc21g&psig=AOvVaw2NbtZ9PmMyfu9t9KZmXCvZ&ust=1635439303581000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIiBgKiE6_MCFQAAAAAdAAAAABAD"
 
-main_url: "http://127.0.0.1:5000"
-credentials_url: "/Users/weitung/.local/share/famcy/weitung/console/credentials.yaml"
+main_url: "https://www.weitung.com"
+credentials_url: "/home/ubuntu/.local/share/famcy/weitung/console/credentials.yaml"
 
 with_login: False
 login_url: "iam/login"
@@ -27,7 +22,3 @@ SUB_COLOR: "#111111"
 
 # loader type
 LOADER: "Double_Ring"
-
-# client
-main_http_url: "http://10.0.200.184:5061"
-default_http_url: "http://10.0.0.184:5061"
