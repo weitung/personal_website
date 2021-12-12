@@ -5,11 +5,8 @@ main_page: overview
 # Declare Main page part
 side_bar_title: "dashboard"
 side_bar_hierachy:
-  - 總覽: overview
-  - 車輛管理: car_management
-  - 月票管理: season
-  - POS功能: pos
-  - 財務功能: finance
+  - Home: "/"
+
 user_defined_content_header_var: PAGE_HEADER
 user_defined_content_var: PAGE_CONTENT
 user_defined_content_object_var: PAGE_CONTENT_OBJECT
@@ -25,8 +22,8 @@ with_login: False
 login_url: "iam/login"
 
 # theme color
-MAIN_COLOR: "#edaf00"
-SUB_COLOR: "#f0e260"
+MAIN_COLOR: "#111111"
+SUB_COLOR: "#111111"
 
 # loader type
 LOADER: "Double_Ring"

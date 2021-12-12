@@ -15,22 +15,24 @@ for f in project_files:
     value = read_config_yaml(abs_path+"/"+f)
     key = f.replace(".yaml", "")
     project_dict[key] = value
+
+    if not project_dict[key]["project_page"]: continue
     with open(abs_path+"/_content/"+key+".md") as ff:
         project_dict[key].update({
             "content": ff.read()
             })
 
 # Define the order of default project
-key_list = list(project_dict.keys())
-key_list.sort()
+ALL_KEY_LIST = list(project_dict.keys())
+ALL_KEY_LIST.sort()
 
 class WeitungPage(Famcy.FamcyPage):
     def __init__(self):
         super(WeitungPage, self).__init__("/", WeitungPersonalPageStyle(), background_thread=False)
-        
-        self.table_info = []
 
+        # Generate project page.
         self.project_card = self.project()
+
         self.card_1 = self.card1()
         self.layout.addWidget(self.card_1, 0, 0)
         self.layout.addWidget(self.project_card, 1, 0)
@@ -60,9 +62,10 @@ class WeitungPage(Famcy.FamcyPage):
         
 
         about_me = Famcy.displayParagraph()
-        about_me.update({
-                "title": "FAMCY",
-                "content": "cotent contentcotent contentcotent contentcotent contentcotent contentcotent contentcotent content"
+        with open(abs_path+"/_content/about_me.md") as ff:
+            about_me.update({
+                "title": "",
+                "content": ff.read()
             })
 
         inner_card.layout.addWidget(about_me, 0, 0, 1, 2)
@@ -74,13 +77,69 @@ class WeitungPage(Famcy.FamcyPage):
 
         return card1
 
+    # Filtering Helper
+    def filter_project(self, submission_obj, input_list):
+        filter_value = input_list[0][0]
+        k_list = []
+        for k in ALL_KEY_LIST:
+            if filter_value in project_dict[k]["categories"]:
+                k_list.append(k)
+
+        self.generate_projects(k_list, self.project_card.layout.content[-1][0])
+        return Famcy.UpdateBlockHtml()
+
+    def generate_projects(self, key_list, project_card_grid):
+        # Clear all widgets before generating
+        project_card_grid.layout.clearWidget()
+        for j in range((len(key_list) + 2)// 3):
+            for i in range(3):
+                # Guard index out of range
+                if j*3+i >= len(key_list):
+                    dummy = Famcy.displayPicWord()
+                    dummy.update({
+                        "title": "",
+                        "content": "",
+                        "img_src": ""
+                        })
+                    project_card_grid.layout.addWidget(dummy, j,i, 1, 1)
+                    continue
+                k = key_list[j*3+i]
+                profile_pic = Famcy.displayPicWord()
+                profile_pic.update({
+                        "title": project_dict[k]["title"],
+                        "content": project_dict[k]["short_desc"],
+                        "img_src": project_dict[k]["img_url"]
+                    })
+
+                profile_pic.body["onclick"] = "location.href='%s';" % project_dict[k]["redirect_url"]
+
+                project_card_grid.layout.addWidget(profile_pic, j,i, 1, 1)
+
     def project(self):
         card2 = Famcy.FamcyCard()
+        project_card_grid = Famcy.FamcyCard()
+
+        card2.preload = lambda: self.generate_projects(ALL_KEY_LIST, project_card_grid)
+
         ilist = Famcy.inputList()
-        sbtn = Famcy.submitBtn()
-        filtering = Famcy.FamcyCard()
+        ilist.update({
+            "title": "Focus Area"
+            })
+
+        cat_list = []
+        for k in ALL_KEY_LIST:
+            cat_list.extend(project_dict[k]["categories"])
+
+        lcategories = list(set(cat_list))
+        lcategories.sort()
+        ilist.update({
+            "value": lcategories
+            })
+
+        ilist.connect(self.filter_project, target=project_card_grid)
+
+        filtering = Famcy.input_form()
         filtering.layout.addWidget(ilist,0,0)
-        filtering.layout.addWidget(sbtn,0,1)
 
         title = sectionTitle()
         title.update({
@@ -91,26 +150,13 @@ class WeitungPage(Famcy.FamcyPage):
         card2.layout.addWidget(title, 0, 0, 1, 3)
         card2.layout.addWidget(filtering, 1,2, 1, 1)
         card2.layout.addWidget(dummy, 1,0, 1, 2)
-
-        for j in range((len(key_list) + 2)// 3):
-            for i in range(3):
-                k = key_list[j*3+i]
-                profile_pic = Famcy.displayPicWord()
-                profile_pic.update({
-                        "title": project_dict[k]["title"],
-                        "content": project_dict[k]["short_desc"],
-                        "img_src": project_dict[k]["img_url"]
-                    })
-
-                profile_pic.body["onclick"] = "location.href='/%s';" % k
-
-                card2.layout.addWidget(profile_pic, j+2,i, 1, 1)
+        card2.layout.addWidget(project_card_grid, 2, 0, 1, 3)
 
         return card2
 
 class ProjectPage(Famcy.FamcyPage):
     def __init__(self, pid):
-        super(ProjectPage, self).__init__("/"+pid, WeitungPersonalPageStyle(), background_thread=False)
+        super(ProjectPage, self).__init__("/"+pid, Famcy.PortfolioStyle(), background_thread=False)
 
         content = Famcy.displayParagraph()
         content.update({
@@ -119,10 +165,12 @@ class ProjectPage(Famcy.FamcyPage):
             })
 
         self.layout.addWidget(content, 0, 0)
+        self.header_script += '<link rel="stylesheet" type="text/css" href="asset/css/markdown1.css" />'
 
-for k in key_list:
-    p = ProjectPage(k)
-    p.register()
+for k in ALL_KEY_LIST:
+    if project_dict[k]["project_page"]:
+        p = ProjectPage(k)
+        p.register()
 
 page = WeitungPage()
 page.register()
