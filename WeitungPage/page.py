@@ -13,11 +13,13 @@ project_dict = {}
 
 for f in project_files:
     value = read_config_yaml(abs_path+"/"+f)
+    # print("value: ", value)
     key = f.replace(".yaml", "")
     project_dict[key] = value
 
     if not project_dict[key]["project_page"]: continue
-    with open(abs_path+"/_content/"+key+".md") as ff:
+    with open(abs_path+"/_content/"+key+".md", encoding="utf-8") as ff:
+        # print("ff.read(): ", ff.read())
         project_dict[key].update({
             "content": ff.read()
             })
@@ -39,13 +41,21 @@ class WeitungPage(Famcy.FamcyPage):
 
     def card1(self):
         card1 = Famcy.FamcyCard()
-        card1.body["style"] = "height: 100vh; justify-content: center;"
+        # card1.body.style["min-height"] = "100vh"
+        card1.body.style["justify-content"] = "center"
+        card1.body.style["padding"] = "0 3vw 10vh"
+        card1.body.children[1].style["align-items"] = "center"
+
         inner_card = Famcy.FamcyCard()
-        profile_pic = Famcy.displayPicWord()
+        inner_card.body.style["min-height"] = "100vh"
+        inner_card.body.style["justify-content"] = "center"
+        profile_pic = Famcy.displayImage()
+        profile_pic.body.children[1].style["justify-content"] = "center"
         profile_pic.update({
                 "title": "",
-                "content": "",
-                "img_src": "/asset/image/weitung.jpeg"
+                "img_name": ["/asset/image/weitung.jpeg"],
+                "img_size": ["70%"],
+                "border_radius": ["100%"]
             })
 
         btn_to_project = Famcy.urlBtn()
@@ -62,7 +72,7 @@ class WeitungPage(Famcy.FamcyPage):
         
 
         about_me = Famcy.displayParagraph()
-        with open(abs_path+"/_content/about_me.md") as ff:
+        with open(abs_path+"/_content/about_me.md", encoding="utf-8") as ff:
             about_me.update({
                 "title": "",
                 "content": ff.read()
@@ -72,8 +82,16 @@ class WeitungPage(Famcy.FamcyPage):
         inner_card.layout.addWidget(btn_to_project, 1, 0, 1, 1)
         inner_card.layout.addWidget(btn_to_cv, 1, 1, 1, 1)
 
+        inner_card.layout.addCusWidget(btn_to_project, 1, 0, 1, 2)
+        inner_card.layout.addCusWidget(btn_to_cv, 2, 0, 1, 2)
+        inner_card.layout.updatePhoneLayoutContent()
+
         card1.layout.addWidget(profile_pic, 0, 0)
         card1.layout.addWidget(inner_card, 0, 1)
+
+        card1.layout.addCusWidget(profile_pic, 0, 0)
+        card1.layout.addCusWidget(inner_card, 1, 0)
+        card1.layout.updatePhoneLayoutContent()
 
         return card1
 
@@ -89,20 +107,13 @@ class WeitungPage(Famcy.FamcyPage):
         return Famcy.UpdateBlockHtml()
 
     def generate_projects(self, key_list, project_card_grid):
+        index=0
         # Clear all widgets before generating
         project_card_grid.layout.clearWidget()
         for j in range((len(key_list) + 2)// 3):
             for i in range(3):
                 # Guard index out of range
-                if j*3+i >= len(key_list):
-                    dummy = Famcy.displayPicWord()
-                    dummy.update({
-                        "title": "",
-                        "content": "",
-                        "img_src": ""
-                        })
-                    project_card_grid.layout.addWidget(dummy, j,i, 1, 1)
-                    continue
+                if j*3+i >= len(key_list): continue
                 k = key_list[j*3+i]
                 profile_pic = Famcy.displayPicWord()
                 profile_pic.update({
@@ -112,8 +123,10 @@ class WeitungPage(Famcy.FamcyPage):
                     })
 
                 profile_pic.body["onclick"] = "location.href='%s';" % project_dict[k]["redirect_url"]
-
-                project_card_grid.layout.addWidget(profile_pic, j,i, 1, 1)
+                project_card_grid.layout.addWidget(profile_pic, j, i)
+                project_card_grid.layout.addCusWidget(profile_pic, index, 0)
+                index+=1
+        project_card_grid.layout.updatePhoneLayoutContent()
 
     def project(self):
         card2 = Famcy.FamcyCard()
@@ -145,12 +158,15 @@ class WeitungPage(Famcy.FamcyPage):
         title.update({
             "title": "Selected Projects"
             })
-        title.body["style"] = "text-align:center;"
-        dummy = Famcy.FamcyCard()
+        title.body.style["text-align"] = "center"
         card2.layout.addWidget(title, 0, 0, 1, 3)
         card2.layout.addWidget(filtering, 1,2, 1, 1)
-        card2.layout.addWidget(dummy, 1,0, 1, 2)
         card2.layout.addWidget(project_card_grid, 2, 0, 1, 3)
+
+        card2.layout.addCusWidget(title, 0, 0, 1, 2)
+        card2.layout.addCusWidget(filtering, 1, 1)
+        card2.layout.addCusWidget(project_card_grid, 2, 0, 1, 2)
+        card2.layout.updatePhoneLayoutContent()
 
         return card2
 
@@ -158,13 +174,16 @@ class ProjectPage(Famcy.FamcyPage):
     def __init__(self, pid):
         super(ProjectPage, self).__init__("/"+pid, Famcy.PortfolioStyle(), background_thread=False)
 
+        card = Famcy.FamcyCard()
+        card.body.style["padding"] = "0 5vw"
         content = Famcy.displayParagraph()
         content.update({
             "title": "", 
             "content": project_dict[pid]["content"]
             })
 
-        self.layout.addWidget(content, 0, 0)
+        card.layout.addWidget(content, 0, 0)
+        self.layout.addWidget(card, 0, 0)
         self.header_script += '<link rel="stylesheet" type="text/css" href="asset/css/markdown1.css" />'
 
 for k in ALL_KEY_LIST:
