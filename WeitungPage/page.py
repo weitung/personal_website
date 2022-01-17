@@ -30,7 +30,7 @@ ALL_KEY_LIST.sort()
 
 class WeitungPage(Famcy.FamcyPage):
     def __init__(self):
-        super(WeitungPage, self).__init__("/", WeitungPersonalPageStyle(), background_thread=False)
+        super(WeitungPage, self).__init__()
         self.header_script += """<title>Weitung Personal Page</title>
   <meta property="og:title" content="Weitung Personal Page">
   <meta property="og:type" content="website">
@@ -184,9 +184,10 @@ class WeitungPage(Famcy.FamcyPage):
         return card2
 
 class ProjectPage(Famcy.FamcyPage):
-    def __init__(self, pid):
-        super(ProjectPage, self).__init__("/"+pid, Famcy.PortfolioStyle(), background_thread=False)
+    def __init__(self):
+        super(ProjectPage, self).__init__()
 
+        pid = self.route[1:]
         card = Famcy.FamcyCard()
         card.body.style["padding"] = "0 5vw"
         content = Famcy.displayParagraph()
@@ -201,11 +202,11 @@ class ProjectPage(Famcy.FamcyPage):
 
 for k in ALL_KEY_LIST:
     if project_dict[k]["project_page"]:
-        p = ProjectPage(k)
-        p.register()
+        ProjectPage.register("/"+k, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+        # p = ProjectPage(k)
+        # p.register()
 
-page = WeitungPage()
-page.register()
+WeitungPage.register("/", WeitungPersonalPageStyle(), permission_level=0, background_thread=False)
 
 
 
