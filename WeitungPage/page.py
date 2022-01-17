@@ -204,13 +204,15 @@ def project_constructor(self):
 for pid in ALL_KEY_LIST:
     if project_dict[pid]["project_page"]:
         pass
-        # type("ProjectPage"+pid.replace("-", "_"), (Famcy.FamcyPage, ), {
-        #     # constructor
-        #     "__init__": project_constructor,
-        #     '__module__': __name__
-        # }).register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+
         # p = ProjectPage(k)
         # p.register()
+
+type("ProjectPage"+"/1-2021-amr".replace("-", "_"), (Famcy.FamcyPage, ), {
+    # constructor
+    "__init__": project_constructor,
+    '__module__': __name__
+}).register("/1-2021-amr", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
 
 WeitungPage.register("/", WeitungPersonalPageStyle(), permission_level=0, background_thread=False)
 
