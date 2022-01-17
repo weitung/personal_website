@@ -53,6 +53,7 @@ class WeitungPage(Famcy.FamcyPage):
     <script type="text/javascript">window.onpageshow = function(event) {
     if (event.persisted) {
     window.location.reload();
+    }
     }</script>
 };"""
 
