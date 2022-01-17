@@ -184,27 +184,25 @@ class WeitungPage(Famcy.FamcyPage):
 
         return card2
 
+# Constructor for project page
+def project_constructor(self):
+    super(self.__class__, self).__init__()
 
+    pid = self.route[1:]
+    card = Famcy.FamcyCard()
+    card.body.style["padding"] = "0 5vw"
+    content = Famcy.displayParagraph()
+    content.update({
+        "title": "", 
+        "content": project_dict[pid]["content"]
+        })
+
+    card.layout.addWidget(content, 0, 0)
+    self.layout.addWidget(card, 0, 0)
+    self.header_script += '<link rel="stylesheet" type="text/css" href="asset/css/markdown1.css" />'
 
 for pid in ALL_KEY_LIST:
     if project_dict[pid]["project_page"]:
-
-        # Constructor for project page
-        def project_constructor(self):
-            super(self.__class__, self).__init__()
-
-            pid = self.route[1:]
-            card = Famcy.FamcyCard()
-            card.body.style["padding"] = "0 5vw"
-            content = Famcy.displayParagraph()
-            content.update({
-                "title": "", 
-                "content": project_dict[pid]["content"]
-                })
-
-            card.layout.addWidget(content, 0, 0)
-            self.layout.addWidget(card, 0, 0)
-            self.header_script += '<link rel="stylesheet" type="text/css" href="asset/css/markdown1.css" />'
 
         type("ProjectPage"+pid.replace("-", "_"), (Famcy.FamcyPage, ), {
             # constructor
