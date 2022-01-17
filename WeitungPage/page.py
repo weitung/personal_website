@@ -203,12 +203,12 @@ def project_constructor(self):
 
 for pid in ALL_KEY_LIST:
     if project_dict[pid]["project_page"]:
-
-        type("ProjectPage"+pid.replace("-", "_"), (Famcy.FamcyPage, ), {
-            # constructor
-            "__init__": project_constructor,
-            '__module__': __name__
-        }).register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+        pass
+        # type("ProjectPage"+pid.replace("-", "_"), (Famcy.FamcyPage, ), {
+        #     # constructor
+        #     "__init__": project_constructor,
+        #     '__module__': __name__
+        # }).register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
         # p = ProjectPage(k)
         # p.register()
 
