@@ -185,7 +185,7 @@ class WeitungPage(Famcy.FamcyPage):
         return card2
 
 def project_constructor(self):
-    super().__init__()
+    super(self.__class__, self).__init__()
 
     card = Famcy.FamcyCard()
     card.body.style["padding"] = "0 5vw"
