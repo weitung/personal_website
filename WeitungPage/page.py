@@ -208,7 +208,8 @@ for pid in ALL_KEY_LIST:
 
         project_page_pid_type = type("ProjectPage"+pid.replace("-", "_"), (Famcy.FamcyPage, ), {
             # constructor
-            "__init__": project_constructor
+            "__init__": project_constructor,
+            '__module__': __name__
         })
 
         project_page_pid_type.pid = pid
