@@ -206,12 +206,12 @@ for pid in ALL_KEY_LIST:
             self.layout.addWidget(card, 0, 0)
             self.header_script += '<link rel="stylesheet" type="text/css" href="asset/css/markdown1.css" />'
 
-        eval("ProjectPage"+pid) = type("ProjectPage"+pid, (Famcy.FamcyPage, ), {
+        project_page_pid_type = type("ProjectPage"+pid, (Famcy.FamcyPage, ), {
             # constructor
             "__init__": project_constructor
         })
 
-        eval("ProjectPage"+pid).register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+        project_page_pid_type.register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
         # p = ProjectPage(k)
         # p.register()
 
