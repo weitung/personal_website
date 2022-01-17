@@ -212,7 +212,7 @@ for pid in ALL_KEY_LIST:
         })
 
         project_page_pid_type.pid = pid
-        project_page_pid_type.register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+        project_page_pid_type.register("/"+pid.replace("-", "_"), Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
         # p = ProjectPage(k)
         # p.register()
 
