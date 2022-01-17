@@ -28,6 +28,14 @@ for f in project_files:
 ALL_KEY_LIST = list(project_dict.keys())
 ALL_KEY_LIST.sort()
 
+class ProjectGrid(Famcy.FamcyCard):
+    def __init__(self, preload_func):
+        super(self.__class__, self).__init__()
+        self.preload_func = preload_func
+
+    def preload(self):
+        self.preload_func()
+
 class WeitungPage(Famcy.FamcyPage):
     def __init__(self):
         super(WeitungPage, self).__init__()
@@ -142,11 +150,11 @@ class WeitungPage(Famcy.FamcyPage):
         project_card_grid.layout.updatePhoneLayoutContent()
 
     def project(self):
-        card2 = Famcy.FamcyCard()
         project_card_grid = Famcy.FamcyCard()
+        card2 = ProjectGrid(lambda: self.generate_projects(ALL_KEY_LIST, project_card_grid))
 
         # card2.preload = lambda: self.generate_projects(ALL_KEY_LIST, project_card_grid)
-        self.generate_projects(ALL_KEY_LIST, project_card_grid)
+        # self.generate_projects(ALL_KEY_LIST, project_card_grid)
 
         ilist = Famcy.inputList()
         ilist.update({
