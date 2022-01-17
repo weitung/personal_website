@@ -184,26 +184,26 @@ class WeitungPage(Famcy.FamcyPage):
 
         return card2
 
-class ProjectPage(Famcy.FamcyPage):
-    def __init__(self):
-        super(ProjectPage, self).__init__()
+for pid in ALL_KEY_LIST:
+    if project_dict[pid]["project_page"]:
 
-        pid = self.route[1:]
-        card = Famcy.FamcyCard()
-        card.body.style["padding"] = "0 5vw"
-        content = Famcy.displayParagraph()
-        content.update({
-            "title": "", 
-            "content": project_dict[pid]["content"]
-            })
+        class ProjectPage(Famcy.FamcyPage):
+            def __init__(self):
+                super(ProjectPage, self).__init__()
 
-        card.layout.addWidget(content, 0, 0)
-        self.layout.addWidget(card, 0, 0)
-        self.header_script += '<link rel="stylesheet" type="text/css" href="asset/css/markdown1.css" />'
+                card = Famcy.FamcyCard()
+                card.body.style["padding"] = "0 5vw"
+                content = Famcy.displayParagraph()
+                content.update({
+                    "title": "", 
+                    "content": project_dict[pid]["content"]
+                    })
 
-for k in ALL_KEY_LIST:
-    if project_dict[k]["project_page"]:
-        ProjectPage.register("/"+k, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+                card.layout.addWidget(content, 0, 0)
+                self.layout.addWidget(card, 0, 0)
+                self.header_script += '<link rel="stylesheet" type="text/css" href="asset/css/markdown1.css" />'
+
+        ProjectPage.register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
         # p = ProjectPage(k)
         # p.register()
 
