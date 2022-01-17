@@ -29,12 +29,13 @@ ALL_KEY_LIST = list(project_dict.keys())
 ALL_KEY_LIST.sort()
 
 class ProjectGrid(Famcy.FamcyCard):
-    def __init__(self, preload_func):
+    def __init__(self, preload_func, *args):
         super(self.__class__, self).__init__()
         self.preload_func = preload_func
+        self.args = args
 
     def preload(self):
-        self.preload_func()
+        self.preload_func(*self.args)
 
 class WeitungPage(Famcy.FamcyPage):
     def __init__(self):
@@ -151,7 +152,7 @@ class WeitungPage(Famcy.FamcyPage):
 
     def project(self):
         project_card_grid = Famcy.FamcyCard()
-        card2 = ProjectGrid(lambda: self.generate_projects(ALL_KEY_LIST, project_card_grid))
+        card2 = ProjectGrid(self.generate_projects, ALL_KEY_LIST, project_card_grid)
 
         # card2.preload = lambda: self.generate_projects(ALL_KEY_LIST, project_card_grid)
         # self.generate_projects(ALL_KEY_LIST, project_card_grid)
