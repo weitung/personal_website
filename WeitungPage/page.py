@@ -201,18 +201,28 @@ def project_constructor(self):
     self.layout.addWidget(card, 0, 0)
     self.header_script += '<link rel="stylesheet" type="text/css" href="asset/css/markdown1.css" />'
 
-for pid in ALL_KEY_LIST:
-    if project_dict[pid]["project_page"]:
-        pass
+class AMR(Famcy.FamcyPage):
+    def __init__(self):
+        self.project_constructor()
+
+class MAS(Famcy.FamcyPage):
+    def __init__(self):
+        self.project_constructor()
+
+class POKEBALL(Famcy.FamcyPage):
+    def __init__(self):
+        self.project_constructor()
+
+# for pid in ALL_KEY_LIST:
+#     if project_dict[pid]["project_page"]:
+#         pass
 
         # p = ProjectPage(k)
         # p.register()
 
-type("ProjectPage"+"/1-2021-amr".replace("-", "_"), (Famcy.FamcyPage, ), {
-    # constructor
-    "__init__": project_constructor,
-    '__module__': __name__
-}).register("/1-2021-amr", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+AMR.register("/1-2021-amr", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+MAS.register("/4-2018-mas", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+POKEBALL.register("/5-2017-pokeball", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
 
 WeitungPage.register("/", WeitungPersonalPageStyle(), permission_level=0, background_thread=False)
 
