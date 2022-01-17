@@ -43,7 +43,12 @@ class WeitungPage(Famcy.FamcyPage):
         self.header_script += """<title>Weitung Personal Page</title>
   <meta property="og:title" content="Weitung Personal Page">
   <meta property="og:type" content="website">
-  <meta property="og:description" content="Hello, I’m Weitung! CEO, Lead Engineer of Nexuni Co. I received my bachelor’s degree in EECS at MIT. I love doing hands-on works that can bring my ideas to solve real-world challenges. While in my second year at MIT I teamed up with some friends and started a company called Nexuni, Co., which is developing automation technologies, including AI, robotics, IoT, to help clients increase the efficiency of labor-intensive works in their businesses.">"""
+  <meta property="og:description" content="Hello, I’m Weitung! CEO, Lead Engineer of Nexuni Co. I received my bachelor’s degree in EECS at MIT. I love doing hands-on works that can bring my ideas to solve real-world challenges. While in my second year at MIT I teamed up with some friends and started a company called Nexuni, Co., which is developing automation technologies, including AI, robotics, IoT, to help clients increase the efficiency of labor-intensive works in their businesses.">
+  <script>window.onpageshow = function(event) {
+  if (event.persisted) {
+    window.location.reload() 
+  }</script>
+};"""
 
         # Generate project page.
         self.project_card = self.project()
