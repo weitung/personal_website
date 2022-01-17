@@ -145,7 +145,7 @@ class WeitungPage(Famcy.FamcyPage):
         card2 = Famcy.FamcyCard()
         project_card_grid = Famcy.FamcyCard()
 
-        card2.preload = lambda: self.generate_projects(ALL_KEY_LIST, project_card_grid)
+        # card2.preload = lambda: self.generate_projects(ALL_KEY_LIST, project_card_grid)
 
         ilist = Famcy.inputList()
         ilist.update({
