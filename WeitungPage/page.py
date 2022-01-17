@@ -202,12 +202,12 @@ def project_constructor(self):
 for pid in ALL_KEY_LIST:
     if project_dict[pid]["project_page"]:
 
-        Geeks = type("Geeks", (Famcy.FamcyPage, ), {
+        project_page_pid_type = type("ProjectPage"+pid, (Famcy.FamcyPage, ), {
             # constructor
             "__init__": project_constructor
         })
 
-        ProjectPage.register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+        project_page_pid_type.register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
         # p = ProjectPage(k)
         # p.register()
 
