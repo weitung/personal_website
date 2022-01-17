@@ -203,15 +203,15 @@ def project_constructor(self):
 
 class AMR(Famcy.FamcyPage):
     def __init__(self):
-        self.project_constructor()
+        project_constructor(self)
 
 class MAS(Famcy.FamcyPage):
     def __init__(self):
-        self.project_constructor()
+        project_constructor(self)
 
 class POKEBALL(Famcy.FamcyPage):
     def __init__(self):
-        self.project_constructor()
+        project_constructor(self)
 
 # for pid in ALL_KEY_LIST:
 #     if project_dict[pid]["project_page"]:
