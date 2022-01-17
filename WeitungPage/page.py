@@ -193,7 +193,7 @@ for pid in ALL_KEY_LIST:
         def project_constructor(self):
             super(self.__class__, self).__init__()
 
-            print(project_dict)
+            print(project_dict[pid])
             card = Famcy.FamcyCard()
             card.body.style["padding"] = "0 5vw"
             content = Famcy.displayParagraph()
@@ -206,12 +206,12 @@ for pid in ALL_KEY_LIST:
             self.layout.addWidget(card, 0, 0)
             self.header_script += '<link rel="stylesheet" type="text/css" href="asset/css/markdown1.css" />'
 
-        project_page_pid_type = type("ProjectPage"+pid, (Famcy.FamcyPage, ), {
+        eval("ProjectPage"+pid) = type("ProjectPage"+pid, (Famcy.FamcyPage, ), {
             # constructor
             "__init__": project_constructor
         })
 
-        project_page_pid_type.register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+        eval("ProjectPage"+pid).register("/"+pid, Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
         # p = ProjectPage(k)
         # p.register()
 
