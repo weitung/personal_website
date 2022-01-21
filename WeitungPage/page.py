@@ -48,8 +48,7 @@ class WeitungPage(Famcy.FamcyPage):
     if (event.persisted) {
     window.location.reload();
     }
-    }</script>
-};"""
+    }</script>"""
 
         # Generate project page.
         self.project_card = self.project()
