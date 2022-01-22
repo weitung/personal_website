@@ -2,11 +2,11 @@ import Famcy
 from flask import render_template
 
 class WeitungPersonalPageStyle(Famcy.FamcyStyle):
-	def __init__(self):
+	def __init__(self, title=""):
 		super(WeitungPersonalPageStyle, self).__init__()
 
 		# set default value
-		self.title = ""
+		self.title = title
 		self.desc = ""
 
 		self.loader = Famcy.FamcyStyleLoader()
