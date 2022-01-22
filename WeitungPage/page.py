@@ -40,8 +40,7 @@ class ProjectGrid(Famcy.FamcyCard):
 class WeitungPage(Famcy.FamcyPage):
     def __init__(self):
         super(WeitungPage, self).__init__()
-        self.header_script += """<title>Weitung Personal Page</title>
-    <meta property="og:title" content="Weitung Personal Page"/>
+        self.header_script += """<meta property="og:title" content="Weitung Personal Page"/>
     <meta property="og:type" content="website"/>
     <meta property="og:description" content="Hello, I’m Weitung! CEO, Lead Engineer of Nexuni Co. I received my bachelor’s degree in EECS at MIT. I love doing hands-on works that can bring my ideas to solve real-world challenges. While in my second year at MIT I teamed up with some friends and started a company called Nexuni, Co., which is developing automation technologies, including AI, robotics, IoT, to help clients increase the efficiency of labor-intensive works in their businesses."/>
     <script type="text/javascript">window.onpageshow = function(event) {
@@ -238,7 +237,7 @@ AMR.register("/1-2021-amr", Famcy.PortfolioStyle(), permission_level=0, backgrou
 MAS.register("/4-2018-mas", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
 POKEBALL.register("/5-2017-pokeball", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
 
-WeitungPage.register("/", WeitungPersonalPageStyle(), permission_level=0, background_thread=False)
+WeitungPage.register("/", WeitungPersonalPageStyle(title="Weitung Personal Page"), permission_level=0, background_thread=False)
 
 
 
