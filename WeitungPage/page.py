@@ -40,7 +40,7 @@ class ProjectGrid(Famcy.FamcyCard):
 class WeitungPage(Famcy.FamcyPage):
     def __init__(self):
         super(WeitungPage, self).__init__()
-        self.header_script += """<meta property="og:title" content="Weitung Personal Page"/>
+        self.header_script += """<meta property="og:title" content="Weitung's Portfolio | MIT Engineer'"/>
     <meta property="og:type" content="website"/>
     <meta property="og:description" content="Hello, I’m Weitung! MIT EECS M.Eng Student at the Signal Kinetics Group. I received my bachelor’s degree in EECS at MIT, and his research interests focus on IoT, AI, and robotics. I love doing hands-on works that can bring my ideas to solve real-world challenges. While in my second year at MIT I teamed up with some friends and started a company called Nexuni, Co. The goal is to develop automation technologies to help clients increase the efficiency of labor-intensive works in their businesses. "/>
     <script type="text/javascript">window.onpageshow = function(event) {
