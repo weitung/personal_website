@@ -22,3 +22,4 @@ SUB_COLOR: "#111111"
 
 # loader type
 LOADER: "Double_Ring"
+DEFAULT_LOADER: False
