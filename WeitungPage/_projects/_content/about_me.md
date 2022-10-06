@@ -1,5 +1,3 @@
 Hello, I’m **Weitung**! MIT EECS M.Eng Student at the Signal Kinetics Group. I received my bachelor’s degree in EECS at MIT, and his research interests focus on **IoT, AI, and robotics**. I love doing hands-on works that can bring my ideas to solve real-world challenges. While in my second year at MIT I teamed up with some friends and started a company called [**Nexuni, Co.**](https://www.nexuni.com). The goal is to develop automation technologies to help clients increase the efficiency of labor-intensive works in their businesses. 
-<br>
 My years at MIT have helped me lay rigorous theoretical foundations in the fields of **AI, embedded systems, and robotics**. Starting a company with intense R&D works has provided me with tremendous experience in the techniques of rapid prototyping and then integrating these quick creations into the development of various technologies for evaluation. I will continue to use my knowledge and experience to work on things that impact the world. 
-<br>
 You can reach me via [weitung@mit.edu](mailto:weitung@mit.edu) or [LinkedIn](https://www.linkedin.com/in/weitung-chen-105222176/).
