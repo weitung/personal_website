@@ -45,4 +45,5 @@ class WeitungPersonalPageStyle(Famcy.FamcyStyle):
 			'''
 		else:
 			_event_source_script = ''
+
 		return render_template("portfolio.html", event_source=_event_source_script, font_theme=font_theme, form_init_js=form_init_js, nav_bar=nav_bar, load_spinner=load_spinner, color_theme=color_theme, html_header=html_header, content=content, extra_script=extra_script, end_js=end_js, body_on_load=body_on_load)

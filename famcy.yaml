@@ -11,7 +11,7 @@ default_name: "Nexuni"
 default_profile_pic_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fchannel%2FUClOgrSn4afPVICckeKLc21g&psig=AOvVaw2NbtZ9PmMyfu9t9KZmXCvZ&ust=1635439303581000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIiBgKiE6_MCFQAAAAAdAAAAABAD"
 
 main_url: "https://www.weitung.com"
-credentials_url: "/home/ubuntu/.local/share/famcy/weitung/console/credentials.yaml"
+credentials_url: "/app/.local/share/famcy/dev/console/credentials.yaml"
 
 with_login: False
 login_url: "iam/login"
