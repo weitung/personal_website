@@ -1,0 +1,6 @@
+title: "Edge ML for Ultra Low Power Underwater Applications"
+short_desc: "TEAM PROJECT. 2022. <br>This is the final project for MIT TinyML class. The goal is to design efficient neural network to perform ML inference on the ultra low power underwater camera."
+categories: ["System Design / Development", "Artificial Intelligence", "All"]
+img_url: "/asset/image/projects/fish.png"
+project_page: false
+redirect_url: "/asset/docs/tinyml.pdf"
