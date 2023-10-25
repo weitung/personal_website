@@ -2,5 +2,5 @@ title: "Carday - Total automated parking management solution for garage and road
 short_desc: "NEXUNI CO. 2022. <br> Implemented total automated parking management solution including LPR, PGS, Automated roadside parking enforcement, and AI video analysis on more than 20 parking lots / roadside parking sectors in Taiwan."
 categories: ["All", "Internet of Things (IoT)", "System Design / Development", "Product Development"]
 img_url: "/asset/image/projects/carday.png"
-project_page: true
+project_page: false
 redirect_url: "https://www.carday.com.tw"
