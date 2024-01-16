@@ -226,6 +226,10 @@ class POKEBALL(Famcy.FamcyPage):
     def __init__(self):
         project_constructor(self)
 
+class TRACKBOT(Famcy.FamcyPage):
+    def __init__(self):
+        project_constructor(self)
+
 # for pid in ALL_KEY_LIST:
 #     if project_dict[pid]["project_page"]:
 #         pass
@@ -236,6 +240,7 @@ class POKEBALL(Famcy.FamcyPage):
 AMR.register("/1-2021-amr", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
 MAS.register("/4-2018-mas", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
 POKEBALL.register("/5-2017-pokeball", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
+TRACKBOT.register("/09-2022-trackbot", Famcy.PortfolioStyle(), permission_level=0, background_thread=False)
 
 WeitungPage.register("/", WeitungPersonalPageStyle(title="Weitung Personal Page"), permission_level=0, background_thread=False)
 
